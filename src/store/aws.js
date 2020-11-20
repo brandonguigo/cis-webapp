@@ -19,26 +19,26 @@ import auth from "@/store/auth";
 
 export default {
   addToSQS(email, hash) {
-    var keyPrefix = "CognitoIdentityServiceProvider." + auth.auth.getClientId();
-    var tokenUserName = auth.auth.signInUserSession
-      .getAccessToken()
-      .getUsername();
-    var idTokenkey = keyPrefix + "." + tokenUserName + ".idToken";
-    var storageHelper = new StorageHelper();
-    var storage = storageHelper.getStorage();
-    console.log(storage.getItem(idTokenkey));
+    // var keyPrefix = "CognitoIdentityServiceProvider." + auth.auth.getClientId();
+    // var tokenUserName = auth.auth.signInUserSession
+    //   .getAccessToken()
+    //   .getUsername();
+    // var idTokenkey = keyPrefix + "." + tokenUserName + ".idToken";
+    // var storageHelper = new StorageHelper();
+    // var storage = storageHelper.getStorage();
+    // console.log(storage.getItem(idTokenkey));
     axios
       .post(
         process.env.VUE_APP_API_SQS_URL,
         {
           email: email,
           hash: hash
-        },
-        {
-          headers: {
-            Authorization: `${storage.getItem(idTokenkey)}`
-          }
         }
+        // {
+        //   headers: {
+        //     Authorization: `${storage.getItem(idTokenkey)}`
+        //   }
+        // }
       )
       .then(function(response) {
         console.log(response);

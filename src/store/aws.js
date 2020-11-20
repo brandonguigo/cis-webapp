@@ -14,8 +14,8 @@
 // var sqs = new AWS.SQS({ region: "us-east-1" });
 
 import * as axios from "axios";
-import { StorageHelper } from "amazon-cognito-auth-js";
-import auth from "@/store/auth";
+//import { StorageHelper } from "amazon-cognito-auth-js";
+//import auth from "@/store/auth";
 
 export default {
   addToSQS(email, hash) {

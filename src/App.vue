@@ -35,6 +35,11 @@
               label="Hash à casser"
               required
             ></v-text-field>
+
+            <v-text-field
+              v-model="email"
+              label="Email"
+              required></v-text-field>
             <v-btn
                 class="mr-4 primary"
                 type="submit"
@@ -58,11 +63,12 @@ export default {
   data: () => ({
     valid: false,
     hash: "",
-    userInfo: {}
+    userInfo: {},
+    email: ""
   }),
   methods: {
     submitRequest() {
-      aws.addToSQS(UserInfoStore.state.cognitoInfo.email, this.hash);
+      aws.addToSQS(this.email, this.hash);
     }
   },
   mounted() {

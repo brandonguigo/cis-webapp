@@ -32,30 +32,30 @@ export default new Router({
     {
       path: "/",
       name: "Home",
-      component: Home,
-      beforeEnter: requireAuth
+      component: Home
+      //beforeEnter: requireAuth
     },
     {
-      path: "/login",
-      beforeEnter(to, from, next) {
-        auth.auth.getSession();
-      }
+      path: "/login"
+      //beforeEnter(to, from, next) {
+      //auth.auth.getSession();
+      //}
     },
     {
       path: "/login/oauth2/code/cognito",
       beforeEnter(to, from, next) {
         var currUrl = window.location.href;
 
-        //console.log(currUrl);
+        console.log(currUrl);
         auth.auth.parseCognitoWebResponse(currUrl);
-        //next();
+        next();
       }
     },
     {
       path: "/logout",
       component: LogoutSuccess,
       beforeEnter(to, from, next) {
-        auth.logout();
+        //auth.logout();
         next("/");
       }
     },
